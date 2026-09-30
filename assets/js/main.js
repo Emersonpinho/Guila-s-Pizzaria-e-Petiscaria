@@ -383,12 +383,13 @@ function initHalfAndHalfBuilder() {
   }
 }
 
-// 5. Renderização das Avaliações Reais do Google Maps
+// 5. Renderização das Avaliações Reais do Google Maps (Top 3 na Home)
 function initReviews() {
   const reviewsContainer = document.getElementById('reviews-cards-container');
   if (!reviewsContainer || typeof REAL_REVIEWS === 'undefined') return;
 
-  reviewsContainer.innerHTML = REAL_REVIEWS.map(r => {
+  const topReviews = REAL_REVIEWS.slice(0, 3);
+  reviewsContainer.innerHTML = topReviews.map(r => {
     const starsHtml = Array(r.rating).fill('<i class="fas fa-star" style="color: #f59e0b;"></i>').join('');
 
     return `
@@ -486,31 +487,46 @@ function initModalsAndEvents() {
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-nav-drawer');
   const mobileOverlay = document.getElementById('mobile-nav-overlay');
+  const mobileClose = document.getElementById('mobile-drawer-close');
+
+  const closeMobileMenu = () => {
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    if (mobileOverlay) mobileOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  const openMobileMenu = () => {
+    if (mobileMenu) mobileMenu.classList.add('open');
+    if (mobileOverlay) mobileOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
 
   if (mobileToggle && mobileMenu) {
     mobileToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      if (mobileOverlay) mobileOverlay.classList.toggle('active');
+      if (mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
 
     if (mobileOverlay) {
-      mobileOverlay.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        mobileOverlay.classList.remove('active');
-      });
+      mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
+
+    if (mobileClose) {
+      mobileClose.addEventListener('click', closeMobileMenu);
     }
 
     document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        if (mobileOverlay) mobileOverlay.classList.remove('active');
-      });
+      link.addEventListener('click', closeMobileMenu);
     });
   }
 
   // Cart Drawer open/close
   document.querySelectorAll('.open-cart-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      closeMobileMenu();
       if (window.cart) window.cart.openDrawer();
     });
   });
