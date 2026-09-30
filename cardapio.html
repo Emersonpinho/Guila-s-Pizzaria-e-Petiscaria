@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio & Pedidos Online | Guila´s Pizzaria e Petiscaria</title>
+  <meta name="description" content="Cardápio oficial da Guila's Pizzaria e Petiscaria em São José do Egito. Escolha seus sabores, monte pizzas meio a meio e envie seu pedido direto para o WhatsApp!">
+  <meta name="theme-color" content="#c2410c">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cardápio Oficial - Guila´s Pizzaria e Petiscaria">
+  <meta property="og:description" content="Faça seu pedido online de pizzas artesanais e petiscos nordestinos com entrega rápida.">
+  <meta property="og:image" content="assets/images/hero_pizza.jpg">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS Customizado -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-content">
+      <div class="top-notice-left">
+        <a href="index.html" style="color: #fed7aa; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
+          <i class="fas fa-arrow-left"></i> Voltar à Página Inicial
+        </a>
+        <span class="top-notice-item">
+          <i class="fas fa-map-marker-alt text-gold"></i> Bairro Planalto, São José do Egito - PE
+        </span>
+      </div>
+      <div class="top-notice-right">
+        <div id="business-status-badge" class="status-badge status-open">
+          <span class="status-dot"></span>
+          <span>Carregando status...</span>
+        </div>
+        <span class="top-notice-item">
+          <i class="fas fa-phone-alt text-gold"></i> (87) 9807-9219
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Fixo -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" title="Voltar à Página Inicial">
+        <div class="logo-icon-wrap">
+          <i class="fas fa-pizza-slice"></i>
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-title">Guila´s <span>Pizzaria</span></span>
+          <span class="brand-subtitle">Cardápio & Pedidos</span>
+        </div>
+      </a>
+
+      <!-- Navegação Interna -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Início</a></li>
+          <li><a href="#monte-meio-a-meio" class="nav-link"><i class="fas fa-pie-chart text-gold"></i> Meio a Meio</a></li>
+          <li><a href="#pizzas-tradicionais" class="nav-link">Tradicionais</a></li>
+          <li><a href="#pizzas-especiais" class="nav-link">Especiais</a></li>
+          <li><a href="#petiscos" class="nav-link">Petiscos</a></li>
+          <li><a href="#bebidas" class="nav-link">Bebidas</a></li>
+        </ul>
+      </nav>
+
+      <!-- Ações do Header -->
+      <div class="header-actions">
+        <button class="btn btn-outline btn-sm open-cart-btn" id="header-cart-action-btn">
+          <i class="fas fa-shopping-bag text-primary"></i>
+          <span>Sacola (<span class="cart-count-badge" style="display:inline; position:static; width:auto; height:auto; background:none; color:var(--primary); border:none; padding:0;">0</span>)</span>
+        </button>
+
+        <a href="https://wa.me/558798079219" target="_blank" class="btn btn-whatsapp btn-sm">
+          <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+        </a>
+
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Abrir Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer Mobile -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="brand-logo" style="margin-bottom: 20px;">
+      <div class="logo-icon-wrap"><i class="fas fa-pizza-slice"></i></div>
+      <div class="brand-text-wrap">
+        <span class="brand-title">Guila´s <span>Pizzaria</span></span>
+        <span class="brand-subtitle">& Petiscaria</span>
+      </div>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link"><i class="fas fa-home"></i> Página Inicial</a></li>
+      <li><a href="#monte-meio-a-meio" class="mobile-nav-link"><i class="fas fa-pie-chart"></i> Monte Sua Meio a Meio</a></li>
+      <li><a href="#cardapio-items" class="mobile-nav-link"><i class="fas fa-pizza-slice"></i> Todas as Pizzas</a></li>
+      <li><a href="#petiscos" class="mobile-nav-link"><i class="fas fa-utensils"></i> Petiscos da Casa</a></li>
+      <li><a href="#bebidas" class="mobile-nav-link"><i class="fas fa-beer"></i> Bebidas Geladas</a></li>
+    </ul>
+    <div style="margin-top: auto; padding-top: 20px;">
+      <button class="btn btn-primary btn-full open-cart-btn">
+        <i class="fas fa-shopping-bag"></i> Ver Meu Pedido
+      </button>
+    </div>
+  </aside>
+
+  <!-- Banner do Topo do Cardápio -->
+  <section class="order-page-hero">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span class="section-tag">Cardápio Completo</span>
+        <h1 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">
+          Faça Seu Pedido Online
+        </h1>
+        <p style="color: var(--text-secondary); font-size: 0.96rem;">
+          Selecione os itens, monte pizzas meio a meio e envie seu pedido formatado direto para o WhatsApp da Guila's!
+        </p>
+      </div>
+
+      <!-- Barra de Busca Instantânea -->
+      <div style="position: relative; width: 100%; max-width: 380px;">
+        <i class="fas fa-search" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+        <input type="text" id="menu-search-input" placeholder="Buscar por sabor ou ingrediente..." style="width: 100%; background: #fff; border: 1px solid var(--border-color); padding: 12px 18px 12px 42px; border-radius: var(--radius-full); font-size: 0.92rem; box-shadow: var(--shadow-sm);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Barra Fixa de Categorias (Pills) -->
+  <div class="menu-sticky-categories">
+    <div class="container categories-scroll-wrap">
+      <button class="menu-category-pill active" data-category="todos">
+        <i class="fas fa-th-large"></i> Todos os Sabores
+      </button>
+      <button class="menu-category-pill" data-category="pizzas-tradicionais">
+        <i class="fas fa-pizza-slice"></i> Pizzas Tradicionais
+      </button>
+      <button class="menu-category-pill" data-category="pizzas-especiais">
+        <i class="fas fa-crown"></i> Pizzas Especiais
+      </button>
+      <button class="menu-category-pill" data-category="pizzas-doces">
+        <i class="fas fa-heart"></i> Pizzas Doces
+      </button>
+      <button class="menu-category-pill" data-category="petiscos">
+        <i class="fas fa-utensils"></i> Petiscos da Casa
+      </button>
+      <button class="menu-category-pill" data-category="bebidas">
+        <i class="fas fa-glass-cheers"></i> Bebidas & Cervejas
+      </button>
+      <a href="#monte-meio-a-meio" class="menu-category-pill" style="border-color: #f59e0b; color: #b45309; background: #fef3c7;">
+        <i class="fas fa-pie-chart"></i> Monte Meio a Meio
+      </a>
+    </div>
+  </div>
+
+  <!-- Layout Principal do Cardápio: Grid + Sidebar no Desktop -->
+  <main class="container order-page-layout">
+    <!-- Coluna Principal com os Produtos -->
+    <div id="cardapio-items">
+
+      <!-- Box: Monte Sua Pizza Meio a Meio -->
+      <section class="builder-box-clean" id="monte-meio-a-meio">
+        <div style="text-align: center;">
+          <div class="pizza-split-graphic">
+            <div class="pizza-half pizza-half-left"></div>
+            <div class="pizza-half pizza-half-right"></div>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">
+            <div>1ª Metade: <strong id="builder-preview-flavor1" style="color: var(--primary);">Calabresa</strong></div>
+            <div>2ª Metade: <strong id="builder-preview-flavor2" style="color: var(--primary);">Nordestina</strong></div>
+          </div>
+        </div>
+
+        <div>
+          <span class="section-tag" style="margin-bottom: 4px;">Destaque Exclusivo</span>
+          <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px;">
+            Monte Sua Pizza Meio a Meio
+          </h2>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 16px;">
+            Escolha 2 sabores incríveis no mesmo pedido. O valor é calculado automaticamente!
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <div class="form-group">
+              <label for="builder-flavor-1"><i class="fas fa-pizza-slice text-gold"></i> 1ª Metade:</label>
+              <select id="builder-flavor-1" class="form-select"></select>
+            </div>
+            <div class="form-group">
+              <label for="builder-flavor-2"><i class="fas fa-pizza-slice text-gold"></i> 2ª Metade:</label>
+              <select id="builder-flavor-2" class="form-select"></select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <div class="form-group">
+              <label for="builder-size"><i class="fas fa-arrows-alt text-gold"></i> Tamanho:</label>
+              <select id="builder-size" class="form-select">
+                <option value="M (6 fatias)">Média (6 fatias - 30cm)</option>
+                <option value="G (8 fatias)" selected>Grande (8 fatias - 35cm)</option>
+                <option value="Família (12 fatias)">Família (12 fatias - 40cm)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="builder-border"><i class="fas fa-circle-notch text-gold"></i> Borda Recheada:</label>
+              <select id="builder-border" class="form-select"></select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="builder-notes"><i class="fas fa-comment-dots text-gold"></i> Observações:</label>
+            <input type="text" id="builder-notes" class="form-input" placeholder="Ex: Sem cebola, massa bem crocante...">
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-color);">
+            <div>
+              <span style="font-size: 0.82rem; color: var(--text-muted);">Valor Calculado:</span>
+              <div id="builder-total-price" style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">R$ 55,00</div>
+            </div>
+            <button class="btn btn-primary" id="builder-add-btn">
+              <i class="fas fa-cart-plus"></i> Adicionar ao Pedido
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid Dinâmico dos Produtos do Cardápio -->
+      <div class="menu-grid-clean" id="menu-grid-container">
+        <!-- Renderizado dinamicamente via menu-data.js e main.js -->
+      </div>
+    </div>
+
+    <!-- Coluna Lateral (Sidebar) com o Resumo do Pedido no Desktop -->
+    <aside class="order-sidebar-cart" id="desktop-cart-sidebar">
+      <div class="order-sidebar-header">
+        <h3><i class="fas fa-shopping-bag"></i> Sua Sacola</h3>
+        <span class="cart-count-badge" style="display: inline-flex; position: static;">0</span>
+      </div>
+
+      <!-- Seletor de Tipo de Pedido -->
+      <div class="order-type-switch">
+        <button class="order-type-btn active" data-type="delivery">
+          <i class="fas fa-motorcycle"></i> Entrega
+        </button>
+        <button class="order-type-btn" data-type="pickup">
+          <i class="fas fa-store"></i> Retirada
+        </button>
+        <button class="order-type-btn" data-type="dinein">
+          <i class="fas fa-chair"></i> Na Mesa
+        </button>
+      </div>
+
+      <div class="order-sidebar-body">
+        <!-- Estado Vazio -->
+        <div class="cart-empty-state" id="sidebar-cart-empty">
+          <i class="fas fa-pizza-slice" style="font-size: 2.8rem; color: #fdba74; margin-bottom: 12px;"></i>
+          <h4 style="color: var(--text-main); font-size: 1.05rem;">Sua sacola está vazia</h4>
+          <p style="font-size: 0.85rem;">Clique em qualquer pizza ou petisco para adicionar ao seu pedido!</p>
+        </div>
+
+        <!-- Lista de Itens no Sidebar -->
+        <div class="cart-items-list" id="sidebar-cart-list">
+          <!-- Renderizado dinamicamente -->
+        </div>
+
+        <!-- Formulário do Sidebar -->
+        <div class="cart-checkout-form" id="sidebar-checkout-form" style="display: none;">
+          <div class="form-group">
+            <label class="checkout-field-label" for="sidebar-checkout-name"><i class="fas fa-user"></i> Seu Nome*</label>
+            <input type="text" id="sidebar-checkout-name" class="checkout-input" placeholder="Ex: João da Silva">
+          </div>
+
+          <div class="form-group">
+            <label class="checkout-field-label" id="sidebar-address-label" for="sidebar-checkout-address">
+              <i class="fas fa-map-marker-alt"></i> Endereço de Entrega*
+            </label>
+            <input type="text" id="sidebar-checkout-address" class="checkout-input" placeholder="Rua, Nº, Bairro e Referência">
+          </div>
+
+          <div class="form-group">
+            <label class="checkout-field-label" for="sidebar-checkout-payment"><i class="fas fa-money-bill-wave"></i> Pagamento</label>
+            <select id="sidebar-checkout-payment" class="checkout-select">
+              <option value="Pix">Pix (Chave informada no WhatsApp)</option>
+              <option value="Cartão de Crédito">Cartão de Crédito na Entrega</option>
+              <option value="Cartão de Débito">Cartão de Débito na Entrega</option>
+              <option value="Dinheiro">Dinheiro em Espécie</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rodapé do Carrinho com Totais e Botão WhatsApp -->
+      <div class="cart-drawer-footer" id="sidebar-cart-footer" style="display: none;">
+        <div class="cart-totals-summary">
+          <div class="cart-summary-row">
+            <span>Subtotal:</span>
+            <span id="sidebar-subtotal-val">R$ 0,00</span>
+          </div>
+          <div class="cart-summary-row" id="sidebar-fee-row">
+            <span>Taxa de Entrega:</span>
+            <span id="sidebar-fee-val">R$ 5,00</span>
+          </div>
+          <div class="cart-summary-row total-row">
+            <span>Total:</span>
+            <span id="sidebar-total-val">R$ 0,00</span>
+          </div>
+        </div>
+
+        <button class="btn btn-whatsapp btn-full" onclick="window.cart.checkoutWhatsApp('sidebar')">
+          <i class="fab fa-whatsapp"></i> Enviar Pedido no WhatsApp
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ======================================================================
+       DRAWER DO CARRINHO MOBILE & OVERLAY
+       ====================================================================== -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title" id="cart-title">
+        <i class="fas fa-shopping-bag text-primary"></i>
+        <span>Seu Pedido</span>
+      </div>
+      <button class="cart-close-btn" id="cart-close-btn" aria-label="Fechar Carrinho">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Seletor de Tipo de Pedido -->
+    <div class="order-type-switch">
+      <button class="order-type-btn active" data-type="delivery">
+        <i class="fas fa-motorcycle"></i> Entrega
+      </button>
+      <button class="order-type-btn" data-type="pickup">
+        <i class="fas fa-store"></i> Retirada
+      </button>
+      <button class="order-type-btn" data-type="dinein">
+        <i class="fas fa-chair"></i> Na Mesa
+      </button>
+    </div>
+
+    <div class="cart-drawer-body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <i class="fas fa-pizza-slice"></i>
+        <h3>Seu pedido está vazio</h3>
+        <p>Explore as opções e escolha suas pizzas e petiscos favoritos!</p>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Renderizado dinamicamente via cart.js -->
+      </div>
+
+      <div class="cart-checkout-form" id="cart-checkout-form">
+        <div class="form-group">
+          <label class="checkout-field-label" for="checkout-name"><i class="fas fa-user"></i> Seu Nome Completo*</label>
+          <input type="text" id="checkout-name" class="checkout-input" placeholder="Ex: Maria Eduarda">
+        </div>
+
+        <div class="form-group">
+          <label class="checkout-field-label" for="checkout-phone"><i class="fas fa-phone"></i> Seu Telefone</label>
+          <input type="tel" id="checkout-phone" class="checkout-input" placeholder="Ex: (87) 99999-9999">
+        </div>
+
+        <div class="form-group">
+          <label class="checkout-field-label" id="checkout-address-label" for="checkout-address">
+            <i class="fas fa-map-marker-alt"></i> Endereço de Entrega*
+          </label>
+          <input type="text" id="checkout-address" class="checkout-input" placeholder="Rua, Nº, Bairro e Referência">
+        </div>
+
+        <div class="form-group">
+          <label class="checkout-field-label" for="checkout-payment"><i class="fas fa-money-bill-wave"></i> Forma de Pagamento</label>
+          <select id="checkout-payment" class="checkout-select">
+            <option value="Pix">Pix (Chave informada no WhatsApp)</option>
+            <option value="Cartão de Crédito">Cartão de Crédito na Entrega</option>
+            <option value="Cartão de Débito">Cartão de Débito na Entrega</option>
+            <option value="Dinheiro">Dinheiro em Espécie</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <div class="cart-totals-summary">
+        <div class="cart-summary-row">
+          <span>Subtotal dos Itens:</span>
+          <span id="cart-subtotal-val">R$ 0,00</span>
+        </div>
+        <div class="cart-summary-row" id="cart-fee-row">
+          <span>Taxa de Entrega:</span>
+          <span id="cart-fee-val">R$ 5,00</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <span>Total Geral:</span>
+          <span id="cart-total-val">R$ 0,00</span>
+        </div>
+      </div>
+
+      <button class="btn btn-whatsapp btn-full btn-lg" onclick="window.cart.checkoutWhatsApp()">
+        <i class="fab fa-whatsapp"></i> Enviar Pedido no WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       MODAL DE PERSONALIZAÇÃO DE PRODUTO
+       ====================================================================== -->
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="product-modal" id="product-modal" role="dialog" aria-modal="true">
+    <div class="modal-header-img-wrap">
+      <img src="assets/images/hero_pizza.jpg" alt="Produto" id="modal-product-img" class="modal-product-img">
+      <button class="modal-close-btn" id="product-modal-close" aria-label="Fechar Modal">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-scrollable-body">
+      <div>
+        <h3 class="modal-product-name" id="modal-product-name">Nome do Produto</h3>
+        <p class="modal-product-desc" id="modal-product-desc">Descrição completa dos ingredientes e preparo.</p>
+      </div>
+
+      <!-- Tamanhos -->
+      <div id="modal-size-section">
+        <div class="modal-section-title">Escolha o Tamanho:</div>
+        <div class="custom-radio-grid" id="modal-size-options"></div>
+      </div>
+
+      <!-- Bordas -->
+      <div id="modal-border-section">
+        <div class="modal-section-title">Deseja Borda Recheada?</div>
+        <div class="custom-radio-grid" id="modal-border-options"></div>
+      </div>
+
+      <!-- Observações -->
+      <div>
+        <div class="modal-section-title">Alguma Observação?</div>
+        <input type="text" id="modal-product-obs" class="form-input" placeholder="Ex: Sem cebola, massa bem crocante...">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <div class="modal-qty-control">
+        <button onclick="changeModalQty(-1)" title="Diminuir">-</button>
+        <span id="modal-qty-val">1</span>
+        <button onclick="changeModalQty(1)" title="Aumentar">+</button>
+      </div>
+
+      <button class="btn btn-primary" onclick="addModalItemToCart()" id="modal-add-to-cart-btn">
+        <span>Adicionar</span> • <span id="modal-total-price">R$ 0,00</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Botões Flutuantes -->
+  <div class="floating-actions-container">
+    <button class="floating-cart-btn open-cart-btn" id="floating-cart-btn" title="Ver Sacola">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-count-badge">0</span>
+    </button>
+    <a href="https://wa.me/558798079219" target="_blank" class="floating-whatsapp-btn" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="site-footer-warm" style="margin-top: 40px;">
+    <div class="container" style="text-align: center;">
+      <p style="font-size: 0.95rem; color: #e5ded8; margin-bottom: 8px;">
+        <strong>Guila´s Pizzaria e Petiscaria</strong> • Av. 25 de Agosto, 699, Bairro Planalto, São José do Egito - PE
+      </p>
+      <p style="font-size: 0.85rem; color: #8c7b70;">
+        Telefone / WhatsApp: (87) 9807-9219 • Horário: Terça a Domingo das 18h às 23h30
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guila´s Pizzaria e Petiscaria | São José do Egito - PE</title>
+  <meta name="description" content="A melhor pizza artesanal e os petiscos mais fartos de São José do Egito e região. Massa crocante, queijo selecionado, carne de sol na manteiga de garrafa e cerveja trincando. Peça online!">
+  <meta name="keywords" content="Guilas Pizzaria, Pizzaria São José do Egito, Petiscaria São José do Egito, Delivery de Pizza, Monteiro PB, Carne de Sol, Cardapio Guilas">
+  <meta name="theme-color" content="#c2410c">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="restaurant.restaurant">
+  <meta property="og:title" content="Guila´s Pizzaria e Petiscaria | Tradição & Sabor">
+  <meta property="og:description" content="O melhor da gastronomia de forno e petiscos no Sertão do Pajeú. Venha nos visitar ou peça pelo delivery!">
+  <meta property="og:image" content="assets/images/hero_pizza.jpg">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- CSS Customizado -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Barra Superior de Avisos & Contatos Rápidos -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-content">
+      <div class="top-notice-left">
+        <span class="top-notice-item">
+          <i class="fas fa-map-marker-alt text-gold"></i> Av. 25 de Agosto, 699 - Planalto, São José do Egito - PE
+        </span>
+        <span class="top-notice-item">
+          <i class="fas fa-phone-alt text-gold"></i> (87) 9807-9219
+        </span>
+      </div>
+      <div class="top-notice-right">
+        <span class="top-notice-item">
+          <i class="fas fa-motorcycle text-gold"></i> Delivery Rápido para toda a cidade
+        </span>
+        <div id="business-status-badge" class="status-badge status-open">
+          <span class="status-dot"></span>
+          <span>Carregando status...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabeçalho Principal (Sticky Navbar) -->
+  <header class="site-header">
+    <div class="container header-container">
+      <!-- Logo do Estabelecimento -->
+      <a href="index.html" class="brand-logo" title="Guila's Pizzaria e Petiscaria">
+        <div class="logo-icon-wrap">
+          <i class="fas fa-pizza-slice"></i>
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-title">Guila´s <span>Pizzaria</span></span>
+          <span class="brand-subtitle">& Petiscaria Artesanal</span>
+        </div>
+      </a>
+
+      <!-- Menu de Navegação Desktop -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link active">Início</a></li>
+          <li><a href="cardapio.html" class="nav-link" style="color: var(--primary); font-weight: 700;"><i class="fas fa-utensils"></i> Cardápio & Pedidos</a></li>
+          <li><a href="#destaques" class="nav-link">Mais Pedidos</a></li>
+          <li><a href="#ambiente" class="nav-link">Nosso Espaço</a></li>
+          <li><a href="#avaliacoes" class="nav-link">Avaliações <span class="text-gold">★ 4.8</span></a></li>
+          <li><a href="#localizacao" class="nav-link">Onde Estamos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Botões de Ação do Header -->
+      <div class="header-actions">
+        <!-- Botão Abrir Cardápio / Pedir -->
+        <a href="cardapio.html" class="btn btn-primary btn-sm" id="header-order-btn">
+          <i class="fas fa-motorcycle"></i>
+          <span>Pedir Online</span>
+        </a>
+
+        <!-- Carrinho -->
+        <button class="header-cart-btn open-cart-btn" id="header-cart-btn" title="Abrir Sacola de Pedidos" aria-label="Abrir Sacola de Pedidos">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count-badge">0</span>
+        </button>
+
+        <!-- Botão Hamburger Mobile -->
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Abrir Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer de Navegação Mobile -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <div class="brand-logo" style="margin-bottom: 20px;">
+      <div class="logo-icon-wrap"><i class="fas fa-pizza-slice"></i></div>
+      <div class="brand-text-wrap">
+        <span class="brand-title">Guila´s <span>Pizzaria</span></span>
+        <span class="brand-subtitle">& Petiscaria</span>
+      </div>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="mobile-nav-link active"><i class="fas fa-home"></i> Início</a></li>
+      <li><a href="cardapio.html" class="mobile-nav-link" style="color: var(--primary);"><i class="fas fa-utensils"></i> Ver Cardápio Completo</a></li>
+      <li><a href="cardapio.html#monte-meio-a-meio" class="mobile-nav-link"><i class="fas fa-pie-chart"></i> Pizza Meio a Meio</a></li>
+      <li><a href="#destaques" class="mobile-nav-link"><i class="fas fa-fire"></i> Mais Pedidos</a></li>
+      <li><a href="#ambiente" class="mobile-nav-link"><i class="fas fa-store"></i> Nosso Ambiente</a></li>
+      <li><a href="#avaliacoes" class="mobile-nav-link"><i class="fas fa-star"></i> Avaliações Reais (4.8★)</a></li>
+      <li><a href="#localizacao" class="mobile-nav-link"><i class="fas fa-map-marked-alt"></i> Localização & Mapa</a></li>
+    </ul>
+    <div style="margin-top: auto; padding-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+      <a href="cardapio.html" class="btn btn-primary btn-full">
+        <i class="fas fa-book-open"></i> Fazer Pedido Online
+      </a>
+      <a href="https://wa.me/558798079219" target="_blank" class="btn btn-whatsapp btn-full">
+        <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+      </a>
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       HERO SECTION CLARA, ACONCHEGANTE E VIBRANTE
+       ====================================================================== -->
+  <section class="hero-section-light" id="inicio">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-pill-row">
+          <div id="hero-status-pill" class="hero-status-pill status-open">
+            <i class="fas fa-clock"></i> <span>Aberto Hoje das 18:00 às 23:30</span>
+          </div>
+          <div class="hero-location-pill">
+            <i class="fas fa-map-pin text-gold"></i> São José do Egito - PE
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          A Verdadeira Tradição da <span class="highlight-text">Pizza Artesanal</span> & Petiscos do Sertão
+        </h1>
+
+        <p class="hero-description">
+          Massas de fermentação lenta com borda crocante, recheios generosos e os petiscos mais saborosos de São José do Egito. Um ambiente familiar e aconchegante para reunir os amigos, além do delivery mais rápido da cidade!
+        </p>
+
+        <div class="hero-actions-row">
+          <a href="cardapio.html" class="btn btn-primary btn-lg" id="hero-menu-cta">
+            <i class="fas fa-utensils"></i> Ver Cardápio & Fazer Pedido
+          </a>
+          <a href="#localizacao" class="btn btn-outline btn-lg" id="hero-location-cta">
+            <i class="fas fa-map-marker-alt text-primary"></i> Como Chegar
+          </a>
+        </div>
+
+        <div class="hero-stats-row">
+          <div class="hero-stat-item">
+            <span class="stat-number">4.8 ★</span>
+            <span class="stat-label">Google Maps Avaliações</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-number">+25</span>
+            <span class="stat-label">Sabores de Pizzas</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Ingredientes Selecionados</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Imagem Visual Hero com Badges Flutuantes -->
+      <div class="hero-visual">
+        <div class="hero-main-img-card">
+          <img src="assets/images/hero_pizza.jpg" alt="Pizza Artesanal saindo do forno Guila's Pizzaria" class="hero-main-img">
+        </div>
+
+        <!-- Badge Flutuante 1 (Avaliação Google) -->
+        <div class="floating-hero-badge badge-top">
+          <i class="fab fa-google text-google" style="font-size: 1.8rem;"></i>
+          <div>
+            <span class="badge-text-title">4.8 Estrelas no Google</span>
+            <span class="badge-text-subtitle">Avaliações reais de clientes</span>
+          </div>
+        </div>
+
+        <!-- Badge Flutuante 2 (Forno & Tradição) -->
+        <div class="floating-hero-badge badge-bottom">
+          <i class="fas fa-fire text-gold" style="font-size: 1.8rem;"></i>
+          <div>
+            <span class="badge-text-title">Forno em Alta Temperatura</span>
+            <span class="badge-text-subtitle">Massa crocante e douradinha</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       BARRA DE DIFERENCIAIS
+       ====================================================================== -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon-circle"><i class="fas fa-fire-alt"></i></div>
+          <div>
+            <h3 class="feature-title">Forno de Alta Temperatura</h3>
+            <p class="feature-desc">Massa artesanal assada no ponto perfeito com crocância inigualável.</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-circle"><i class="fas fa-drumstick-bite"></i></div>
+          <div>
+            <h3 class="feature-title">Petiscaria Regional</h3>
+            <p class="feature-desc">Carne de sol na manteiga de garrafa, queijo coalho e porções generosas.</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-circle"><i class="fas fa-beer"></i></div>
+          <div>
+            <h3 class="feature-title">Cerveja Estupidamente Gelada</h3>
+            <p class="feature-desc">As melhores marcas servidas no ponto certo para acompanhar sua noite.</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-circle"><i class="fas fa-motorcycle"></i></div>
+          <div>
+            <h3 class="feature-title">Delivery Quentinho</h3>
+            <p class="feature-desc">Embalagens térmicas que mantêm o queijo derretido e a borda intacta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       DESTAQUES MAIS PEDIDOS DA CASA
+       ====================================================================== -->
+  <section class="home-highlights-section" id="destaques">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Os Favoritos de São José do Egito</span>
+        <h2 class="section-title">Os Mais Pedidos da Semana</h2>
+        <p class="section-subtitle">Conheça os sabores que são paixão unânime dos nossos clientes e escolha o seu favorito.</p>
+      </div>
+
+      <div class="highlights-grid">
+        <!-- Item 1: Nordestina Guila's -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img src="assets/images/hero_pizza.jpg" alt="Pizza Nordestina Especial" class="menu-card-img">
+            <span class="item-tag-badge">Chef Especial</span>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Nordestina Guila's Especial</h3>
+            <p class="menu-card-desc">Carne de sol desfiada artesanal na manteiga de garrafa, queijo coalho tostado em cubos, mussarela e cebola roxa.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">
+                A partir de <strong>R$ 39,00</strong>
+              </div>
+              <a href="cardapio.html" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Pedir
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Calabresa Especial -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img src="assets/images/cheese_pull.jpg" alt="Pizza Calabresa Especial" class="menu-card-img">
+            <span class="item-tag-badge">Mais Pedido</span>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Calabresa Especial com Catupiry</h3>
+            <p class="menu-card-desc">Molho caseiro de tomate, farta camada de calabresa defumada fatiada, cebola roxa crocante, Catupiry e orégano fresco.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">
+                A partir de <strong>R$ 32,00</strong>
+              </div>
+              <a href="cardapio.html" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Pedir
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Carne de Sol com Macaxeira -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img src="assets/images/petiscos.jpg" alt="Carne de Sol com Macaxeira" class="menu-card-img">
+            <span class="item-tag-badge">Petisco Top</span>
+            <span class="item-portion-badge"><i class="fas fa-user-friends"></i> Serve 2 a 3</span>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Carne de Sol Acebolada</h3>
+            <p class="menu-card-desc">Porção generosa de carne de sol acebolada salteada na manteiga de garrafa, servida com macaxeira bem crocante e farofa.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">
+                Porção Farta: <strong>R$ 58,00</strong>
+              </div>
+              <a href="cardapio.html" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Pedir
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4: Chocolate com Morango -->
+        <div class="menu-card">
+          <div class="menu-card-img-wrap">
+            <img src="assets/images/cheese_pull.jpg" alt="Pizza Doce de Chocolate com Morango" class="menu-card-img">
+            <span class="item-tag-badge">Sobremesa</span>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Chocolate com Morangos Frescos</h3>
+            <p class="menu-card-desc">Base de massa fina crocante coberta com farto chocolate ao leite derretido, morangos frescos fatiados e raspas nobres.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">
+                A partir de <strong>R$ 34,00</strong>
+              </div>
+              <a href="cardapio.html" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Pedir
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner de Acesso ao Cardápio Completo -->
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="cardapio.html" class="btn btn-primary btn-lg" style="box-shadow: 0 6px 25px var(--primary-glow);">
+          <i class="fas fa-book-open"></i> Ver Cardápio Completo com Mais de 30 Opções
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEÇÃO NOSSO ESPAÇO & ACONCHEGO FAMILIAR
+       ====================================================================== -->
+  <section class="ambience-section" id="ambiente">
+    <div class="container">
+      <div class="ambience-layout-grid">
+        <div class="ambience-img-wrap">
+          <img src="assets/images/ambience.jpg" alt="Ambiente acolhedor e familiar na Guila's Pizzaria e Petiscaria">
+        </div>
+
+        <div class="ambience-content">
+          <span class="section-tag">Aconchego & Alegria</span>
+          <h2 class="section-title">O Lugar Perfeito Para Suas Noites Especiais</h2>
+          <p class="section-subtitle" style="text-align: left; margin: 0;">
+            Na Guila's Pizzaria e Petiscaria, cada cliente faz parte da nossa história. Criamos um ambiente amplo, arejado e acolhedor, onde você se sente em casa do primeiro brinde até a última fatia.
+          </p>
+
+          <div class="ambience-badges-list">
+            <div class="ambience-badge-item">
+              <i class="fas fa-users"></i>
+              <div>
+                <strong style="display: block; color: var(--text-main); font-size: 1rem;">Ambiente Familiar & Confortável</strong>
+                <span style="font-size: 0.88rem; color: var(--text-secondary);">Mesas espaçosas ideais para reunir crianças, familiares e grandes grupos com comodidade.</span>
+              </div>
+            </div>
+
+            <div class="ambience-badge-item">
+              <i class="fas fa-birthday-cake"></i>
+              <div>
+                <strong style="display: block; color: var(--text-main); font-size: 1rem;">Comemorações e Aniversários</strong>
+                <span style="font-size: 0.88rem; color: var(--text-secondary);">Reserve com antecedência para comemorar seu aniversário com atendimento exclusivo.</span>
+              </div>
+            </div>
+
+            <div class="ambience-badge-item">
+              <i class="fas fa-music"></i>
+              <div>
+                <strong style="display: block; color: var(--text-main); font-size: 1rem;">Música Ambiente & Cerveja Gelada</strong>
+                <span style="font-size: 0.88rem; color: var(--text-secondary);">Trilha sonora agradável para bater papo e relaxar após um dia intenso de trabalho.</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <a href="https://wa.me/558798079219?text=Ol%C3%A1%2C%20gostaria%20de%20reservar%20uma%20mesa%20na%20Guila's%20Pizzaria!" target="_blank" class="btn btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> Reservar Mesa no WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEÇÃO DE AVALIAÇÕES REAIS (GOOGLE MAPS SHOWCASE)
+       ====================================================================== -->
+  <section class="reviews-section-clean" id="avaliacoes">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Depoimentos Verificados</span>
+        <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+        <p class="section-subtitle">Avaliações reais compartilhadas no Google Maps por quem frequenta e ama a nossa gastronomia.</p>
+      </div>
+
+      <!-- Banner de Destaque Google -->
+      <div class="google-rating-banner">
+        <div class="google-rating-left">
+          <div class="google-icon-circle">
+            <i class="fab fa-google text-google"></i>
+          </div>
+          <div>
+            <div style="display: flex; align-items: baseline; gap: 8px;">
+              <span class="rating-number-score">4.8</span>
+              <span style="font-size: 1.2rem; color: var(--text-muted); font-weight: 700;">/ 5.0</span>
+            </div>
+            <div class="rating-stars-cluster">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="rating-count-label">Avaliações autênticas de clientes no Google Maps</span>
+          </div>
+        </div>
+
+        <div>
+          <a href="https://www.google.com/maps/place/Guila%C2%B4s+Pizzaria+e+Petiscaria/@-7.4696021,-37.2748222,17z" target="_blank" class="btn btn-outline" id="google-reviews-btn">
+            <i class="fab fa-google text-google"></i> Ver no Google Maps & Avaliar
+          </a>
+        </div>
+      </div>
+
+      <!-- Grid de Avaliações Reais -->
+      <div class="reviews-cards-grid" id="reviews-cards-container">
+        <!-- Renderizado dinamicamente via menu-data.js e main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SEÇÃO ONDE ESTAMOS & LOCALIZAÇÃO
+       ====================================================================== -->
+  <section class="location-section" id="localizacao">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Venha Nos Visitar</span>
+        <h2 class="section-title">Onde Estamos & Como Chegar</h2>
+        <p class="section-subtitle">Fácil acesso no Bairro Planalto, com vagas tranquilas e estrutura aconchegante te esperando.</p>
+      </div>
+
+      <div class="location-layout-grid">
+        <!-- Detalhes do Endereço -->
+        <div class="location-info-card">
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--text-main); margin-bottom: 8px;">
+              Guila´s Pizzaria e Petiscaria
+            </h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+              O point gastronômico do Bairro Planalto em São José do Egito - PE.
+            </p>
+
+            <div class="location-items-list">
+              <div class="loc-item">
+                <div class="loc-icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                <div>
+                  <div class="loc-item-title">Endereço Completo</div>
+                  <div class="loc-item-desc">Avenida 25 de Agosto, 699 - Bairro Planalto<br>São José do Egito - PE, 56700-000</div>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <div class="loc-icon-circle"><i class="fab fa-whatsapp"></i></div>
+                <div>
+                  <div class="loc-item-title">Telefone & Pedidos</div>
+                  <div class="loc-item-desc"><a href="https://wa.me/558798079219" target="_blank" style="color: var(--primary); font-weight: 700;">(87) 9807-9219</a></div>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <div class="loc-icon-circle"><i class="fas fa-clock"></i></div>
+                <div>
+                  <div class="loc-item-title">Horário de Funcionamento</div>
+                  <div class="loc-item-desc">Terça a Domingo: 18h00 às 23h30<br><span style="color: var(--text-muted); font-size: 0.84rem;">Segunda-feira: Fechado para descanso da equipe</span></div>
+                </div>
+              </div>
+
+              <div class="loc-item">
+                <div class="loc-icon-circle"><i class="fas fa-credit-card"></i></div>
+                <div>
+                  <div class="loc-item-title">Formas de Pagamento</div>
+                  <div class="loc-item-desc">Pix, Cartões de Crédito, Débito e Dinheiro em espécie</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=-7.4696021,-37.2748222" target="_blank" class="btn btn-primary btn-sm">
+              <i class="fas fa-directions"></i> Traçar Rota no Google Maps
+            </a>
+            <a href="https://waze.com/ul?ll=-7.4696021,-37.2748222&navigate=yes" target="_blank" class="btn btn-outline btn-sm">
+              <i class="fab fa-waze"></i> Abrir no Waze
+            </a>
+          </div>
+        </div>
+
+        <!-- Mapa Interativo Leaflet -->
+        <div class="location-map-wrap">
+          <div id="pizzeria-map"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       PERGUNTAS FREQUENTES (FAQ)
+       ====================================================================== -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Tire Suas Dúvidas</span>
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <p class="section-subtitle">Tudo o que você precisa saber sobre nossos pedidos, delivery e funcionamento.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Qual é a média de tempo para entrega pelo delivery?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Nosso tempo médio de entrega varia entre 35 a 50 minutos nos dias de semana e 45 a 60 minutos nos fins de semana e feriados. Todas as pizzas são transportadas em caixas térmicas apropriadas para manter a crocância e o calor como se estivessem saído do forno naquele instante!
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Posso pedir pizza meio a meio com sabores diferentes?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Com certeza! Você pode combinar até 2 sabores nos tamanhos Médio, Grande ou Família. Basta acessar a nossa página de pedidos ou cardápio online e utilizar o construtor Meio a Meio.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Vocês aceitam reservas para aniversários e confraternizações?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Sim! Adoramos receber comemorações de aniversários, famílias e grupos de amigos. Para garantir as melhores mesas e um atendimento personalizado, recomendamos entrar em contato com antecedência pelo nosso WhatsApp (87) 9807-9219.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Como faço para fazer um pedido online direto pelo site?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            É super simples: acesse nosso cardápio pela página de pedidos, adicione as pizzas e petiscos que desejar na sacola, preencha seu endereço e clique em "Enviar Pedido no WhatsApp". Seu pedido é gerado de forma limpa e automática!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       RODAPÉ (FOOTER)
+       ====================================================================== -->
+  <footer class="site-footer-warm">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-logo">
+            <div class="logo-icon-wrap"><i class="fas fa-pizza-slice"></i></div>
+            <div class="brand-text-wrap">
+              <span class="brand-title" style="color: #fff;">Guila´s <span style="color: var(--primary);">Pizzaria</span></span>
+              <span class="brand-subtitle" style="color: #bfaea2;">& Petiscaria</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Tradição, sabor e os ingredientes mais selecionados do Sertão do Pajeú. O ponto certo para sua melhor noite de pizza e petiscos.
+          </p>
+          <div style="margin-top: 16px;">
+            <a href="cardapio.html" class="btn btn-primary btn-sm">
+              <i class="fas fa-motorcycle"></i> Fazer Pedido Online
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navegação</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="cardapio.html">Cardápio & Pedidos</a></li>
+            <li><a href="#destaques">Mais Pedidos</a></li>
+            <li><a href="#ambiente">Nosso Espaço</a></li>
+            <li><a href="#avaliacoes">Avaliações no Google</a></li>
+            <li><a href="#localizacao">Onde Estamos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Funcionamento</h4>
+          <ul class="footer-links-list">
+            <li><strong style="color: #fff;">Terça a Domingo:</strong><br>18h00 às 23h30</li>
+            <li style="margin-top: 8px;"><strong style="color: #fff;">Segunda-feira:</strong><br><span style="color: #f87171;">Fechado (Descanso)</span></li>
+            <li style="margin-top: 8px;"><strong style="color: #fff;">Delivery & Salão:</strong><br>Todos os dias abertos</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Localização & Contato</h4>
+          <p style="font-size: 0.88rem; color: #bfaea2; line-height: 1.5; margin-bottom: 12px;">
+            Avenida 25 de Agosto, 699<br>Bairro Planalto, São José do Egito - PE<br>CEP 56700-000
+          </p>
+          <p style="font-size: 0.92rem; color: #fff; font-weight: 700; margin-bottom: 14px;">
+            <i class="fab fa-whatsapp text-green"></i> (87) 9807-9219
+          </p>
+          <a href="https://www.google.com/maps/place/Guila%C2%B4s+Pizzaria+e+Petiscaria/@-7.4696021,-37.2748222,17z" target="_blank" class="btn btn-outline btn-sm" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); color: #fff;">
+            <i class="fas fa-map-marked-alt text-gold"></i> Abrir no Google Maps
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 Guila´s Pizzaria e Petiscaria. Todos os direitos reservados.</span>
+        <span>Feito com carinho para os amantes da boa pizza e dos petiscos 🍕</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       BOTÕES FLUTUANTES (WHATSAPP & SACÓLA DE PEDIDOS)
+       ====================================================================== -->
+  <div class="floating-actions-container">
+    <a href="cardapio.html" class="floating-cart-btn" id="floating-cart-btn" title="Ver Sacola de Pedidos" aria-label="Ver Sacola de Pedidos">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-count-badge">0</span>
+    </a>
+    <a href="https://wa.me/558798079219?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20Guila's%20Pizzaria!" target="_blank" class="floating-whatsapp-btn" title="Falar pelo WhatsApp" aria-label="Pedir pelo WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
